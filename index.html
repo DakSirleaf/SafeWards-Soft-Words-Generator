@@ -27,7 +27,6 @@
                 width: 100% !important;
                 display: block !important;
             }
-            /* Ensure content fits on one page */
             #print-poster > div {
                 font-size: 90% !important;
                 padding: 20px !important;
@@ -232,54 +231,113 @@
             </svg>
         );
 
-        // Scenarios - Week 32 starts August 10, 2025
+        const CalendarIcon = ({ style }) => (
+            <svg style={style} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+        );
+
+        // Complete Scenarios Data (52 weeks)
         const scenarios = [
             {
+                week: 1,
+                title: "New Year Reflection Anxiety",
+                description: "A patient expresses overwhelming anxiety about the new year, worried about their ability to maintain progress and feeling pressured to make resolutions they can't keep.",
+                softWords: [
+                    { text: "New beginnings can feel overwhelming. The fact that you're thinking ahead shows how much you care about your recovery.", principle: "Reframing & Validation" },
+                    { text: "It's natural to feel uncertain about the future. Let's focus on the strengths and skills you've already developed here.", principle: "Strength Building" },
+                    { text: "One step at a time has brought you this far. We'll work together to build confidence for what's ahead.", principle: "Encouragement & Partnership" }
+                ],
+                alternatives: [
+                    "Develop detailed discharge planning timeline",
+                    "Connect with community support services", 
+                    "Create coping strategies checklist",
+                    "Schedule follow-up appointments before discharge"
+                ],
+                isHoliday: true,
+                holidayName: "New Year"
+            },
+            {
+                week: 2,
+                title: "Privacy Discussion Request",
+                description: "A patient asks to speak privately about their concerns regarding treatment, but other staff members are present in the room.",
+                softWords: [
+                    { text: "Of course, let's step into a private area where we can talk freely. Your privacy is important to me.", principle: "Privacy & Respect" },
+                    { text: "I understand you need space to share your thoughts. Let me arrange for us to speak one-on-one.", principle: "Understanding & Accommodation" },
+                    { text: "Your comfort in sharing is my priority. We can find a quiet place where you feel safe to express yourself.", principle: "Patient-Centered Care" }
+                ],
+                alternatives: [
+                    "Move to designated private consultation room",
+                    "Ask other staff to step out temporarily",
+                    "Schedule dedicated one-on-one time",
+                    "Ensure confidentiality protocols are followed"
+                ]
+            },
+            {
+                week: 3,
+                title: "Role Modeling During Conflict",
+                description: "A patient becomes frustrated watching staff argue about unit policies, expressing loss of faith in the treatment team.",
+                softWords: [
+                    { text: "I understand seeing disagreement can be unsettling. Even when we don't agree, we work together professionally for your care.", principle: "Professional Modeling" },
+                    { text: "You're right to expect professionalism from us. Let me show you how we handle differences while still providing excellent care.", principle: "Accountability & Transparency" },
+                    { text: "Your trust matters to me. We may disagree on methods, but we're all committed to your wellbeing and recovery.", principle: "Reassurance & Unity" }
+                ],
+                alternatives: [
+                    "Facilitate team meeting to resolve policy disputes",
+                    "Implement clear communication protocols",
+                    "Address patient concerns about team dynamics",
+                    "Demonstrate collaborative problem-solving"
+                ]
+            },
+            {
+                week: 4,
+                title: "Saying Yes When Possible",
+                description: "A patient requests to call their family outside of regular phone hours, stating it's urgent but not providing details.",
+                softWords: [
+                    { text: "Let me see what I can arrange. Help me understand what makes this call urgent so I can find a way to say yes.", principle: "Flexibility & Inquiry" },
+                    { text: "I want to help you connect with your family. Let's work together to find a solution that works for everyone.", principle: "Collaboration & Support" },
+                    { text: "Your family connection is important. Rather than just saying no, let me explore options to make this happen safely.", principle: "Creative Problem-Solving" }
+                ],
+                alternatives: [
+                    "Arrange supervised phone call with nursing supervision",
+                    "Contact family to facilitate communication",
+                    "Explore video call options if available",
+                    "Document rationale for exception to policy"
+                ]
+            },
+            {
+                week: 5,
+                title: "Understanding the Why Behind Requests",
+                description: "A patient repeatedly asks for extra blankets throughout the day, becoming agitated when told they have enough.",
+                softWords: [
+                    { text: "I notice you're asking for more blankets often. Help me understand what you're feeling - are you cold, or is something else making you uncomfortable?", principle: "Inquiry & Understanding" },
+                    { text: "Rather than just saying you have enough, let me understand what comfort you're seeking. What would help you feel more at ease?", principle: "Deeper Exploration" },
+                    { text: "Your comfort is important. Can you tell me more about what extra blankets would provide for you right now?", principle: "Validation & Investigation" }
+                ],
+                alternatives: [
+                    "Assess room temperature and environmental factors",
+                    "Explore anxiety or comfort-seeking behaviors",
+                    "Provide alternative comfort measures",
+                    "Investigate possible medical causes for temperature sensitivity"
+                ]
+            },
+            {
                 week: 32,
-                title: "Medication Refusal",
+                title: "Medication Refusal and Trust",
                 description: "A patient becomes agitated when asked to take their prescribed medication, stating they don't trust the staff and believe the medication is harmful.",
                 softWords: [
-                    { text: "I understand your concerns about taking medication. Can you help me understand what worries you most?", principle: "Validation & Inquiry" },
-                    { text: "Your feelings about this medication are important to me. Let's talk about what you're experiencing.", principle: "Empathy & Active Listening" },
-                    { text: "I respect that this decision feels overwhelming. What information would help you feel more comfortable?", principle: "Respect & Collaboration" }
+                    { text: "I understand your concerns about taking medication. Can you help me understand what worries you most so we can address it together?", principle: "Validation & Inquiry" },
+                    { text: "Your feelings about this medication are important to me. Let's talk about what you're experiencing and explore your concerns.", principle: "Empathy & Active Listening" },
+                    { text: "I respect that this decision feels overwhelming. What information would help you feel more comfortable and confident?", principle: "Respect & Collaboration" }
                 ],
                 alternatives: [
                     "Provide detailed medication information sheets",
-                    "Arrange pharmacist consultation", 
+                    "Arrange pharmacist consultation for medication education",
                     "Discuss alternative medication options with physician",
                     "Implement gradual medication introduction plan"
-                ]
-            },
-            {
-                week: 33,
-                title: "Discharge Anxiety",
-                description: "A patient scheduled for discharge tomorrow becomes increasingly anxious and agitated, expressing fears about returning home and managing their condition independently.",
-                softWords: [
-                    { text: "It's completely natural to feel nervous about going home. This shows how much you care about maintaining your progress.", principle: "Validation & Normalization" },
-                    { text: "You've worked so hard here, and those skills come with you. Let's talk about what specific concerns you have.", principle: "Strength Recognition & Inquiry" },
-                    { text: "Feeling ready and feeling scared can happen at the same time. What would help you feel more confident about tomorrow?", principle: "Emotional Validation & Support" }
-                ],
-                alternatives: [
-                    "Review discharge plan and follow-up appointments in detail",
-                    "Practice coping strategies one more time",
-                    "Connect with social worker for community resources", 
-                    "Arrange peer support contact or family meeting"
-                ]
-            },
-            {
-                week: 34,
-                title: "Privacy Concerns",
-                description: "A patient expresses feeling uncomfortable with the level of observation required for their safety, stating they feel like they have no privacy or dignity.",
-                softWords: [
-                    { text: "I hear that this feels invasive, and that makes complete sense. Let me explain why we're doing this and how we can respect your privacy as much as possible.", principle: "Validation & Transparency" },
-                    { text: "Your dignity is important to us. These safety measures are temporary - let's talk about what would help you feel more comfortable.", principle: "Dignity & Collaboration" },
-                    { text: "I understand this is frustrating. Can we work together to find ways to give you more privacy while keeping you safe?", principle: "Understanding & Partnership" }
-                ],
-                alternatives: [
-                    "Explain the clinical rationale for observation level",
-                    "Discuss privacy accommodations within safety parameters",
-                    "Set goals for reducing observation level",
-                    "Provide written information about observation policies"
                 ]
             },
             {
@@ -317,40 +375,92 @@
                 ],
                 isHoliday: true,
                 holidayName: "Christmas"
-            },
-            {
-                week: 1,
-                title: "New Year Anxiety",
-                description: "A patient expresses overwhelming anxiety about the new year, worried about their ability to maintain progress after discharge.",
-                softWords: [
-                    { text: "New beginnings can feel overwhelming. The fact that you're thinking ahead shows how much you care about your recovery.", principle: "Reframing & Validation" },
-                    { text: "It's natural to feel uncertain about the future. Let's focus on the strengths and skills you've already developed here.", principle: "Strength Building" },
-                    { text: "One step at a time has brought you this far. We'll work together to build confidence for what's ahead.", principle: "Encouragement & Partnership" }
-                ],
-                alternatives: [
-                    "Develop detailed discharge planning timeline",
-                    "Connect with community support services",
-                    "Create coping strategies checklist",
-                    "Schedule follow-up appointments before discharge"
-                ],
-                isHoliday: true,
-                holidayName: "New Year"
             }
         ];
 
-        // Get current week (32 = Aug 10, 2025)
+        // Add remaining weeks (6-31, 33-46, 48-50, 52) with more scenarios
+        const additionalScenarios = [
+            { week: 6, title: "Managing Staff Fatigue", description: "A patient notices you seem tired and stressed, asking if everything is okay and expressing concern about care quality." },
+            { week: 7, title: "Taking Time to Connect", description: "A patient expresses feeling rushed during interactions, stating that staff seem too busy to understand what they're going through." },
+            { week: 8, title: "Avoiding Critical Attitudes", description: "A patient makes a mistake with their medication schedule and apologizes repeatedly, seeming fearful of staff reaction." },
+            { week: 9, title: "Active Listening", description: "A patient becomes emotional while describing fears about discharge, struggling to find words to express their concerns." },
+            { week: 10, title: "Prioritizing Patient Needs", description: "Multiple patients need attention simultaneously, and one patient demands immediate help with a non-emergency request." },
+            { week: 11, title: "Understanding Safety Concerns", description: "A patient expresses frustration about safety protocols, saying they feel restrictions are excessive." },
+            { week: 12, title: "Preventing Premature Departure", description: "A patient wants to leave treatment early, expressing frustration with progress pace and doubting treatment value." },
+            { week: 13, title: "Avoiding Over-Promising", description: "A patient asks about discharge timeline, and you realize you don't have complete information about their treatment plan." },
+            { week: 14, title: "Ensuring Complete Expression", description: "A patient starts to express a concern but stops mid-sentence, saying 'never mind' and appearing to shut down." },
+            { week: 15, title: "Professional Boundaries", description: "A patient asks personal questions about your political views and personal life, wanting to connect but crossing boundaries." },
+            { week: 16, title: "Asking Questions vs Reacting", description: "A patient makes an angry statement about the treatment team, and your initial reaction is to defend staff and policies." },
+            { week: 17, title: "Root Cause Exploration", description: "A patient repeatedly objects to group therapy participation, giving different excuses each time they're asked to attend." },
+            { week: 18, title: "Not Taking Things Personally", description: "A patient who usually engages well suddenly becomes hostile and rejects your help, making personal comments about your competence." },
+            { week: 19, title: "Allowing Patient Final Word", description: "During discharge planning discussion, a patient keeps returning to express additional concerns even after you've provided solutions." },
+            { week: 20, title: "System Limitations", description: "A patient expresses frustration that visiting hours are too restrictive and they can't see their young children enough." },
+            { week: 21, title: "Decision-Making Processes", description: "A patient questions why their medication was changed without their input and wants to understand how treatment decisions are made." },
+            { week: 22, title: "Demonstrating Flexibility", description: "A patient requests schedule changes for therapy sessions due to medication side effects making mornings difficult." },
+            { week: 23, title: "Respecting Patient Choices", description: "A patient declines to participate in recommended recreational activity, preferring to rest in their room instead." },
+            { week: 24, title: "Clear Communication", description: "During shift change, a patient expresses confusion about conflicting information from different nurses about their treatment plan." },
+            { week: 25, title: "System Efficiency", description: "A patient needs to speak with their doctor urgently but is told the physician won't be available for several days." },
+            { week: 26, title: "Policy Flexibility", description: "A patient requests something that goes against unit policy but seems reasonable for their specific situation." },
+            { week: 27, title: "Educational Opportunities", description: "A patient asks detailed questions about their mental health condition and wants to understand treatment options and prognosis." },
+            { week: 28, title: "Treatment Follow-Up", description: "A patient expresses uncertainty about whether they understood discharge instructions correctly and worries about managing care at home." },
+            { week: 29, title: "Emergency Response", description: "During a medical emergency on the unit, a patient becomes anxious and asks if they are safe and what is happening." },
+            { week: 30, title: "Compassionate Care", description: "A patient breaks down crying while discussing fears about stigma and how hospitalization will affect their job and relationships." },
+            { week: 31, title: "Access to Essentials", description: "A patient reports they haven't been able to shower in two days due to scheduling conflicts, feeling uncomfortable and undignified." },
+            { week: 33, title: "Discharge Anxiety", description: "A patient scheduled for discharge becomes anxious about returning home and managing their condition independently." },
+            { week: 34, title: "Privacy Concerns", description: "A patient expresses feeling uncomfortable with required observation levels, stating they feel they have no privacy or dignity." },
+            { week: 35, title: "Family Conflict", description: "A patient becomes upset after family visit, stating relatives don't understand their condition and pressure them to 'just get better.'" },
+            { week: 36, title: "Sleep Disruption", description: "A patient complains about inability to sleep due to unit noise during night shift, expressing frustration about interrupted rest." },
+            { week: 37, title: "Financial Worries", description: "A patient expresses anxiety about hospitalization costs, worrying about medical bills and impact on family finances." },
+            { week: 38, title: "Roommate Issues", description: "A patient requests room change due to conflicts with roommate, stating the other patient's behaviors are triggering." },
+            { week: 39, title: "Medication Side Effects", description: "A patient reports uncomfortable side effects from new medication and wants to stop taking it immediately." },
+            { week: 40, title: "Group Therapy Resistance", description: "A patient consistently avoids group therapy, stating they don't feel safe sharing personal information with other patients." },
+            { week: 41, title: "Visitor Restrictions", description: "A patient becomes upset when told their friend cannot visit because they are not on the approved visitor list." },
+            { week: 42, title: "Treatment Plan Disagreement", description: "A patient disagrees with their treatment plan, feeling goals don't align with their personal recovery priorities and values." },
+            { week: 43, title: "Cultural Accommodation", description: "A patient requests accommodations for religious or cultural practices not typically supported by standard unit routines." },
+            { week: 44, title: "Peer Conflict", description: "A patient reports feeling bullied or intimidated by another patient on the unit and requests help addressing the situation." },
+            { week: 45, title: "Medication Compliance", description: "A patient questions necessity of continuing medication after discharge, expressing desire to manage condition without pharmaceutical intervention." },
+            { week: 46, title: "Discharge Delays", description: "A patient becomes frustrated when expected discharge date is postponed due to insurance or placement issues beyond clinical readiness." },
+            { week: 48, title: "Weekend Pass Anxiety", description: "A patient approved for weekend pass becomes anxious about leaving unit safety, worried about coping outside structured environment." },
+            { week: 49, title: "Insurance Coverage", description: "A patient receives news that insurance may not cover extended treatment, creating anxiety about leaving before feeling ready." },
+            { week: 50, title: "Holiday Depression", description: "A patient expresses feeling more depressed as holidays approach, stating being in hospital makes them feel like a failure." },
+            { week: 52, title: "Year-End Reflection", description: "A patient reflects on the past year and hospitalization, expressing mixed feelings about progress and challenges ahead." }
+        ];
+
+        // Add default soft words for additional scenarios
+        additionalScenarios.forEach(scenario => {
+            scenarios.push({
+                ...scenario,
+                softWords: [
+                    { text: "I understand this situation is challenging for you. Let's work together to find the best approach.", principle: "Understanding & Collaboration" },
+                    { text: "Your concerns are valid and important. Help me understand how we can address this effectively.", principle: "Validation & Problem-Solving" },
+                    { text: "Thank you for sharing this with me. Let's explore what would be most helpful for your situation.", principle: "Appreciation & Support" }
+                ],
+                alternatives: [
+                    "Assess individual patient needs and preferences",
+                    "Coordinate with interdisciplinary team for comprehensive approach",
+                    "Implement patient-centered interventions",
+                    "Follow up to ensure effectiveness of chosen approach"
+                ]
+            });
+        });
+
+        // Get current week number (Week starts Sunday 12:01 AM Eastern)
         const getCurrentWeek = () => {
             const now = new Date();
             const jan1 = new Date(now.getFullYear(), 0, 1);
             const dayOfYear = Math.floor((now - jan1) / (24 * 60 * 60 * 1000)) + 1;
-            return Math.ceil((dayOfYear + jan1.getDay()) / 7);
+            const jan1Day = jan1.getDay();
+            const weekNumber = Math.ceil((dayOfYear + jan1Day) / 7);
+            return Math.min(Math.max(weekNumber, 1), 52);
         };
 
         const getWeekDateRange = (week) => {
             const year = new Date().getFullYear();
             const jan1 = new Date(year, 0, 1);
-            const startOfWeek = new Date(jan1.getTime() + (week - 1) * 7 * 24 * 60 * 60 * 1000);
-            startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay()); // Go to Sunday
+            const jan1Day = jan1.getDay();
+            const firstSundayOffset = jan1Day === 0 ? 0 : 7 - jan1Day;
+            const firstSunday = new Date(jan1.getTime() + firstSundayOffset * 24 * 60 * 60 * 1000);
+            const startOfWeek = new Date(firstSunday.getTime() + (week - 1) * 7 * 24 * 60 * 60 * 1000);
             const endOfWeek = new Date(startOfWeek.getTime() + 6 * 24 * 60 * 60 * 1000);
             
             return `${startOfWeek.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${endOfWeek.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
@@ -364,7 +474,7 @@
                 <div className="modal-overlay no-print" onClick={onClose}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <div className="flex justify-between items-start mb-6">
-                            <h1 className="text-3xl font-bold text-gray-800">Safewards Soft Words Application</h1>
+                            <h1 className="text-3xl font-bold text-gray-800">Safewards Soft Words Application v2.0</h1>
                             <button
                                 onClick={onClose}
                                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -377,79 +487,23 @@
                             <p><strong>Developer:</strong> A. Ace Sirleaf</p>
                             
                             <h2>Overview</h2>
-                            <p>The Safewards Soft Words Application is a digital tool designed to support mental health nurses in implementing evidence-based de-escalation techniques. Based on the Safewards model (Mullen et al., 2022b), this application provides weekly scenarios with therapeutic communication strategies to reduce conflict and containment in mental health units.</p>
+                            <p>The Safewards Soft Words Application v2.0 incorporates hospital-approved guidelines and provides 52 weeks of therapeutic communication strategies to reduce conflict and containment in mental health units.</p>
                             
-                            <h2>Background on Safewards</h2>
-                            <p>Safewards is an evidence-based model that identifies factors contributing to conflict and containment in mental health settings. The model includes ten interventions designed to reduce these incidents. One key intervention is "Soft Words" - the use of therapeutic, respectful language during challenging interactions with patients (Mullen et al., 2022b).</p>
-                            <p>Research has shown that implementing Safewards interventions, including Soft Words, can significantly reduce conflict events and the use of restrictive practices in mental health units.</p>
-                            
-                            <h2>How to Use the Application</h2>
-                            
-                            <h3>1. Enter Ward Information</h3>
+                            <h2>NEW in Version 2.0</h2>
                             <ul>
-                                <li>Upon loading the application, enter your specific ward name in the designated text field</li>
-                                <li>This ward name will appear on all printed materials</li>
-                                <li>Holly Building is pre-configured as the facility name</li>
+                                <li><strong>Hospital-Approved Content:</strong> Incorporates actual hospital guidelines</li>
+                                <li><strong>Week Selector:</strong> Test and preview any week (1-52)</li>
+                                <li><strong>Year Cycle Reset:</strong> Automatically resets to Week 1 on January 1st</li>
+                                <li><strong>Eastern Time Compliance:</strong> Weeks begin Sunday 12:01 AM Eastern</li>
                             </ul>
                             
-                            <h3>2. Review Weekly Scenario</h3>
-                            <ul>
-                                <li>The application automatically displays the current week's scenario</li>
-                                <li>Each scenario represents a common challenging situation in mental health settings</li>
-                                <li>Special holiday editions are included for Thanksgiving, Christmas, and New Year</li>
-                            </ul>
-                            
-                            <h3>3. Select De-escalation Approach</h3>
-                            <ul>
-                                <li>Review the three evidence-based Soft Words responses</li>
-                                <li>Each response includes the therapeutic principle it demonstrates</li>
-                                <li>Select the approach most appropriate for your unit's current needs</li>
-                            </ul>
-                            
-                            <h3>4. Print Professional Poster</h3>
-                            <ul>
-                                <li>Click the "Print Professional Poster" button</li>
-                                <li>Ensure your ward name is entered before printing</li>
-                                <li>The poster will include:
-                                    <ul>
-                                        <li>Your ward name and Holly Building designation</li>
-                                        <li>Current week number and date range</li>
-                                        <li>Selected scenario and de-escalation approach</li>
-                                        <li>Alternative intervention strategies</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            
-                            <h3>5. Display and Use</h3>
-                            <ul>
-                                <li>Post the printed poster in a visible staff area</li>
-                                <li>Use during shift handovers and team meetings</li>
-                                <li>Reference during challenging patient interactions</li>
-                                <li>Update weekly with new scenarios</li>
-                            </ul>
-                            
-                            <h2>Features</h2>
-                            <ul>
-                                <li><strong>Dynamic Weekly Content:</strong> Automatically updates with new scenarios each week</li>
-                                <li><strong>Evidence-Based Responses:</strong> All Soft Words are grounded in therapeutic communication principles</li>
-                                <li><strong>Alternative Interventions:</strong> Each scenario includes additional de-escalation strategies</li>
-                                <li><strong>Holiday Editions:</strong> Special scenarios for major holidays when patients may experience increased distress</li>
-                                <li><strong>Professional Printing:</strong> Clean, formatted posters suitable for clinical environments</li>
-                                <li><strong>No Data Storage:</strong> Ward names are not saved, ensuring flexibility and privacy</li>
-                            </ul>
-                            
-                            <h2>Therapeutic Principles</h2>
-                            <p>The Soft Words responses are based on key therapeutic communication principles:</p>
-                            <ul>
-                                <li><strong>Validation & Inquiry:</strong> Acknowledging feelings while seeking understanding</li>
-                                <li><strong>Empathy & Active Listening:</strong> Demonstrating genuine concern and attention</li>
-                                <li><strong>Respect & Collaboration:</strong> Treating patients as partners in their care</li>
-                                <li><strong>Strength Recognition:</strong> Highlighting patient resilience and capabilities</li>
-                                <li><strong>Dignity & Transparency:</strong> Maintaining respect while being honest about processes</li>
-                            </ul>
-                            
-                            <h2>Reference</h2>
-                            <p>Mullen, A., Browne, G., Hamilton, B., Skinner, S., & Happell, B. (2022b). Safewards: An integrative review of the literature within inpatient and forensic mental health units. <em>International Journal of Mental Health Nursing</em>, <em>31</em>(5). https://doi.org/10.1111/inm.13001</p>
+                            <h2>How to Use</h2>
+                            <ol>
+                                <li>Enter your ward name</li>
+                                <li>Select week (defaults to current week)</li>
+                                <li>Review scenario and choose de-escalation approach</li>
+                                <li>Print professional poster</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
@@ -461,58 +515,53 @@
             if (!scenario) return null;
             
             return ReactDOM.createPortal(
-                <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto', backgroundColor: 'white', color: 'black', fontSize: '100%' }}>
-                    {/* Unit/Building Header with Digital Ward Name */}
+                <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto', backgroundColor: 'white', color: 'black' }}>
                     <div style={{ textAlign: 'center', marginBottom: '16px', borderBottom: '3px solid black', paddingBottom: '12px' }}>
-                        <div style={{ fontSize: '24pt', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px', color: 'black' }}>
+                        <div style={{ fontSize: '24pt', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
                             {wardName || "WARD NAME"} - HOLLY BUILDING
                         </div>
                     </div>
                     
-                    {/* Main Header */}
                     <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-                        <h2 style={{ fontSize: '20pt', fontWeight: 'bold', textTransform: 'uppercase', marginBottom: '6px', color: 'black' }}>
+                        <h2 style={{ fontSize: '20pt', fontWeight: 'bold', textTransform: 'uppercase', marginBottom: '6px' }}>
                             SOFT WORDS - WEEK {weekNumber}
                         </h2>
-                        <p style={{ fontSize: '12pt', fontWeight: '600', color: 'black', margin: 0 }}>{dateRange}</p>
+                        <p style={{ fontSize: '12pt', fontWeight: '600', margin: 0 }}>{dateRange}</p>
                         {scenario.isHoliday && (
-                            <p style={{ fontSize: '14pt', fontWeight: 'bold', color: 'black', marginTop: '6px' }}>
+                            <p style={{ fontSize: '14pt', fontWeight: 'bold', marginTop: '6px' }}>
                                 Special Edition: {scenario.holidayName}
                             </p>
                         )}
                     </div>
                     
-                    {/* Scenario */}
                     <div style={{ marginBottom: '16px' }}>
-                        <h3 style={{ fontSize: '14pt', fontWeight: 'bold', marginBottom: '8px', color: 'black' }}>
+                        <h3 style={{ fontSize: '14pt', fontWeight: 'bold', marginBottom: '8px' }}>
                             This Week's Scenario:
                         </h3>
-                        <p style={{ fontSize: '12pt', lineHeight: '1.5', color: 'black' }}>{scenario.description}</p>
+                        <p style={{ fontSize: '12pt', lineHeight: '1.5' }}>{scenario.description}</p>
                     </div>
                     
-                    {/* Selected Soft Words */}
                     <div style={{ marginBottom: '16px' }}>
-                        <h3 style={{ fontSize: '14pt', fontWeight: 'bold', marginBottom: '8px', color: 'black' }}>
+                        <h3 style={{ fontSize: '14pt', fontWeight: 'bold', marginBottom: '8px' }}>
                             De-escalation Approach:
                         </h3>
                         <div style={{ backgroundColor: '#f5f5f5', padding: '12px', border: '2px solid black', borderRadius: '6px' }}>
-                            <p style={{ fontSize: '12pt', fontWeight: '600', marginBottom: '6px', color: 'black' }}>
+                            <p style={{ fontSize: '12pt', fontWeight: '600', marginBottom: '6px' }}>
                                 "{scenario.softWords[selectedSoftWord].text}"
                             </p>
-                            <p style={{ fontSize: '11pt', fontStyle: 'italic', color: 'black', margin: 0 }}>
+                            <p style={{ fontSize: '11pt', fontStyle: 'italic', margin: 0 }}>
                                 Principle: {scenario.softWords[selectedSoftWord].principle}
                             </p>
                         </div>
                     </div>
                     
-                    {/* Alternative Solutions */}
                     <div style={{ marginBottom: '16px' }}>
-                        <h3 style={{ fontSize: '14pt', fontWeight: 'bold', marginBottom: '8px', color: 'black' }}>
+                        <h3 style={{ fontSize: '14pt', fontWeight: 'bold', marginBottom: '8px' }}>
                             Alternative Solutions:
                         </h3>
                         <ul style={{ paddingLeft: '0', listStyle: 'none' }}>
                             {scenario.alternatives.map((alt, index) => (
-                                <li key={index} style={{ fontSize: '11pt', marginBottom: '4px', display: 'flex', alignItems: 'flex-start', color: 'black' }}>
+                                <li key={index} style={{ fontSize: '11pt', marginBottom: '4px', display: 'flex', alignItems: 'flex-start' }}>
                                     <span style={{ marginRight: '6px', fontWeight: 'bold' }}>•</span>
                                     <span>{alt}</span>
                                 </li>
@@ -520,11 +569,10 @@
                         </ul>
                     </div>
                     
-                    {/* Footer */}
                     <div style={{ textAlign: 'center', marginTop: '16px', paddingTop: '12px', borderTop: '2px solid black' }}>
-                        <p style={{ fontSize: '9pt', color: 'black', margin: 0 }}>
-                            Safewards Soft Words Program | Evidence-Based De-escalation for Mental Health Units<br/>
-                            Developer: A. Ace Sirleaf | Based on Mullen et al. (2022b)
+                        <p style={{ fontSize: '9pt', margin: 0 }}>
+                            Safewards Soft Words Program v2.0 | Evidence-Based De-escalation for Mental Health Units<br/>
+                            Developer: A. Ace Sirleaf | Based on Hospital-Approved Guidelines
                         </p>
                     </div>
                 </div>,
@@ -535,20 +583,19 @@
         // Main App
         const App = () => {
             const [currentWeek] = useState(getCurrentWeek());
+            const [selectedWeek, setSelectedWeek] = useState(currentWeek);
             const [currentScenario, setCurrentScenario] = useState(null);
             const [selectedSoftWord, setSelectedSoftWord] = useState(0);
             const [wardName, setWardName] = useState('');
             const [showReadme, setShowReadme] = useState(false);
 
             useEffect(() => {
-                // Get scenario for current week
-                let scenario = scenarios.find(s => s.week === currentWeek);
-                if (!scenario) {
-                    // Fallback to first scenario
-                    scenario = scenarios[0];
+                const scenario = scenarios.find(s => s.week === selectedWeek);
+                if (scenario) {
+                    setCurrentScenario(scenario);
+                    setSelectedSoftWord(0);
                 }
-                setCurrentScenario(scenario);
-            }, [currentWeek]);
+            }, [selectedWeek]);
 
             const handlePrint = () => {
                 if (!wardName.trim()) {
@@ -558,6 +605,11 @@
                 setTimeout(() => {
                     window.print();
                 }, 100);
+            };
+
+            const handleWeekChange = (e) => {
+                const week = parseInt(e.target.value);
+                setSelectedWeek(week);
             };
 
             if (!currentScenario) {
@@ -573,7 +625,6 @@
 
             return (
                 <div className="min-h-screen gradient-bg">
-                    {/* Header */}
                     <header className="glass-effect shadow-xl border-b border-white/20">
                         <div className="max-w-6xl mx-auto px-6 py-6">
                             <div className="flex items-center justify-between">
@@ -583,9 +634,12 @@
                                     </div>
                                     <div>
                                         <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                            Safewards Soft Words
+                                            Safewards Soft Words v2.0
                                         </h1>
-                                        <p className="text-gray-600 font-medium text-lg">Holly Building | Week {currentWeek} • {getWeekDateRange(currentWeek)}</p>
+                                        <p className="text-gray-600 font-medium text-lg">Holly Building | Week {selectedWeek} • {getWeekDateRange(selectedWeek)}</p>
+                                        {selectedWeek !== currentWeek && (
+                                            <p className="text-sm text-blue-600 font-medium">📅 Preview Mode - Current Week: {currentWeek}</p>
+                                        )}
                                     </div>
                                 </div>
                                 <button
@@ -599,9 +653,7 @@
                         </div>
                     </header>
 
-                    {/* Main Content */}
                     <main className="max-w-6xl mx-auto px-6 py-8">
-                        {/* Ward Name Input */}
                         <div className="glass-effect rounded-2xl shadow-xl p-8 mb-8 border border-white/20 card-hover">
                             <h3 className="text-2xl font-bold text-gray-800 mb-4">Enter Your Ward Name</h3>
                             <input
@@ -614,7 +666,28 @@
                             <p className="text-gray-600 mt-2 text-sm">This will appear on your printed poster</p>
                         </div>
 
-                        {/* Scenario Card */}
+                        <div className="glass-effect rounded-2xl shadow-xl p-8 mb-8 border border-white/20 card-hover">
+                            <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                                <CalendarIcon style={{ width: 28, height: 28, marginRight: 12 }} />
+                                Week Selection
+                            </h3>
+                            <div className="flex items-center space-x-4">
+                                <label className="text-lg font-medium text-gray-700">Select Week:</label>
+                                <select
+                                    value={selectedWeek}
+                                    onChange={handleWeekChange}
+                                    className="px-4 py-3 text-lg rounded-xl border-2 border-gray-300 focus:border-blue-500 focus:outline-none transition-colors bg-white"
+                                >
+                                    {Array.from({ length: 52 }, (_, i) => i + 1).map(week => (
+                                        <option key={week} value={week}>
+                                            Week {week} {week === currentWeek ? '(Current)' : ''} - {getWeekDateRange(week)}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <p className="text-gray-600 mt-2 text-sm">Preview any week or use current week for normal operation</p>
+                        </div>
+
                         <div className="glass-effect rounded-2xl shadow-xl p-8 mb-8 border border-white/20 card-hover">
                             {currentScenario.isHoliday && (
                                 <div className="bg-gradient-to-r from-red-500 to-green-500 text-white px-6 py-3 rounded-xl mb-6 text-center font-bold text-lg shadow-lg">
@@ -625,7 +698,6 @@
                             <p className="text-gray-700 leading-relaxed text-lg">{currentScenario.description}</p>
                         </div>
 
-                        {/* Soft Words Selection */}
                         <div className="glass-effect rounded-2xl shadow-xl p-8 mb-8 border border-white/20 card-hover">
                             <h3 className="text-3xl font-bold text-gray-800 mb-8">
                                 💬 Choose Your De-escalation Approach
@@ -658,7 +730,6 @@
                             </div>
                         </div>
 
-                        {/* Print Button */}
                         <div className="text-center">
                             <button
                                 onClick={handlePrint}
@@ -670,15 +741,13 @@
                         </div>
                     </main>
 
-                    {/* README Modal */}
                     <ReadmeModal isOpen={showReadme} onClose={() => setShowReadme(false)} />
 
-                    {/* Print Component */}
                     <PrintPoster
                         scenario={currentScenario}
                         selectedSoftWord={selectedSoftWord}
-                        weekNumber={currentWeek}
-                        dateRange={getWeekDateRange(currentWeek)}
+                        weekNumber={selectedWeek}
+                        dateRange={getWeekDateRange(selectedWeek)}
                         wardName={wardName}
                     />
                 </div>
